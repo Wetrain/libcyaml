@@ -72,6 +72,7 @@ cc_library(
   name = "libcyaml",
   copts = COPTS,
   deps = [
+    "@com_yaml_libyaml//:libyaml",
     ":free",
     ":load",
     ":mem",
