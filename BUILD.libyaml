@@ -1,0 +1,96 @@
+COPTS = ["-Werror"]
+
+cc_library(
+  name = "yaml_private",
+  copts = COPTS,
+  hdrs = ["yaml_private.h"]
+)
+
+cc_library(
+  name = "api",
+  copts = COPTS,
+  srcs = ["src/api.c"],
+  deps = [
+    ":yaml_private",
+  ]
+)
+
+cc_library(
+  name = "dumper",
+  copts = COPTS,
+  srcs = ["src/dumper.c"],
+  deps = [
+    ":yaml_private",
+  ]
+)
+
+cc_library(
+  name = "emitter",
+  copts = COPTS,
+  srcs = ["src/emitter.c"],
+  deps = [
+    ":yaml_private",
+  ]
+)
+
+cc_library(
+  name = "loader",
+  copts = COPTS,
+  srcs = ["src/loader.c"],
+  deps = [
+    ":yaml_private",
+  ]
+)
+
+cc_library(
+  name = "parser",
+  copts = COPTS,
+  srcs = ["src/parser.c"],
+  deps = [
+    ":yaml_private",
+  ]
+)
+
+cc_library(
+  name = "reader",
+  copts = COPTS,
+  srcs = ["src/reader.c"],
+  deps = [
+    ":yaml_private",
+  ]
+)
+
+cc_library(
+  name = "scanner",
+  copts = COPTS,
+  srcs = ["src/scanner.c"],
+  deps = [
+    ":yaml_private",
+  ]
+)
+
+cc_library(
+  name = "writer",
+  copts = COPTS,
+  srcs = ["src/writer.c"],
+  deps = [
+    ":yaml_private",
+  ]
+)
+
+cc_library(
+  name = "libyaml",
+  copts = COPTS,
+  srcs = ["src/scanner.c"],
+  deps = [
+    ":yaml_private",
+    ":api",
+    ":dumper",
+    ":emitter",
+    ":loader",
+    ":parser",
+    ":reader",
+    ":scanner",
+    ":writer",
+  ]
+)
