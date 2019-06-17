@@ -3,7 +3,8 @@ COPTS = ["-Wall",
          "-DVERSION_MAJOR=0",
          "-DVERSION_MINOR=1",
          "-DVERSION_PATCH=0",
-         "-DVERSION_DEVEL=1"]
+         "-DVERSION_DEVEL=1",
+         "-I include",]
 
 cc_library(
   name = "data",
@@ -48,7 +49,8 @@ cc_library(
   name = "mem",
   copts = COPTS,
   srcs = ["mem.c"],
-  hdrs = ["mem.h"]
+  hdrs = ["mem.h"],
+  deps = ["//include:cyaml"],
 )
 
 cc_library(
@@ -65,6 +67,7 @@ cc_library(
   hdrs = ["util.h"],
   deps = [
     ":utf8",
+    "//include:cyaml"
   ],
 )
 
@@ -72,7 +75,6 @@ cc_library(
   name = "libcyaml",
   copts = COPTS,
   deps = [
-    "@com_yaml_libyaml//:libyaml",
     ":free",
     ":load",
     ":mem",
