@@ -8,7 +8,7 @@ cc_library(
   hdrs = ["units/ttest.h"]
 )
 
-cc_binary(
+cc_test(
     name = "test",
     copts = COPTS,
     linkopts = LINKOPTS,
@@ -16,6 +16,17 @@ cc_binary(
     deps = [
       ":test_headers",
       "//include:cyaml",
-      "//src:libcyaml"
+      "//src:libcyaml",
+    ],
+    data = [
+      ":test-data",
     ]
+)
+
+filegroup(
+    name = "test-data",
+    srcs = [
+        "data/basic.yaml",
+	"//:build-dir",
+    ],
 )
