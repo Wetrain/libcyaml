@@ -7,6 +7,8 @@
 #include <stdbool.h>
 #include <assert.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 #include <cyaml/cyaml.h>
 
@@ -258,7 +260,8 @@ static bool test_file_load_save_basic(
 		return ttest_fail(&tc, cyaml_strerror(err));
 	}
 
-	err = cyaml_save_file("build/load_save.yaml", config, &top_schema,
+	char * test_tempdir = getenv("TEST_UNDECLARED_OUTPUTS_DIR");
+	err = cyaml_save_file(strcat(test_tempdir, "load_save.yaml"), config, &top_schema,
 				data_tgt, 0);
 	if (err != CYAML_OK) {
 		return ttest_fail(&tc, cyaml_strerror(err));
